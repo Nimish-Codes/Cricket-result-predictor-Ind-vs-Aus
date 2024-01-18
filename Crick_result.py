@@ -1,0 +1,45 @@
+import pandas as pd
+import streamlit as st
+
+def evaluate_player_performance(players):
+    players['Performance'] = players['TotRuns'] + players['Hunds'] * 100 + players['Fifties'] * 50
+
+def compare_teams(team1, team2):
+    total_performance_team1 = team1['Performance'].sum()
+    total_performance_team2 = team2['Performance'].sum()
+
+    if total_performance_team1 > total_performance_team2:
+        return "Team Ind wins!"
+    elif total_performance_team1 < total_performance_team2:
+        return "Team Aus wins!"
+    else:
+        return "It's a tie!"
+
+# Read CSV files
+table1 = pd.read_csv('IndTim.csv')
+table2 = pd.read_csv('AusTim.csv')
+
+# Create Streamlit app
+st.title("Cricket Team Selector")
+
+# Team 1 dropdown
+team1_dropdown = st.selectbox("Select 11 players from Team Ind:", table1['Name'])
+
+# Team 2 dropdown
+team2_dropdown = st.selectbox("Select 11 players from Team Aus:", table2['Name'])
+
+# Button to evaluate teams
+if st.button("Evaluate Teams"):
+    # Get the selected players
+    selected_players_table1 = table1[table1['Name'].isin([team1_dropdown])]
+    selected_players_table2 = table2[table2['Name'].isin([team2_dropdown])]
+
+    # Evaluate player performance
+    evaluate_player_performance(selected_players_table1)
+    evaluate_player_performance(selected_players_table2)
+
+    # Compare teams
+    result = compare_teams(selected_players_table1, selected_players_table2)
+
+    # Display result
+    st.write("Result:", result)
