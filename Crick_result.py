@@ -55,4 +55,4 @@ if st.button("Evaluate Teams"):
 
         st.write("\nResult:", result)
 
-        st.warning("\nDisclaimer: The provided prediction is based on player's previous T20 stats\nThere may be some alter values in the app's data according to sources")
+        st.warning("\nDisclaimer: The provided prediction is based on player's previous T20 stats\n\nThere may be some alter values in the app's data according to sources.")
