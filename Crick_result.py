@@ -30,22 +30,26 @@ selected_players_team2 = st.multiselect("Select 11 players from Team Aus:", tabl
 
 # Button to evaluate teams
 if st.button("Evaluate Teams"):
-    # Get the selected players
-    selected_players_table1 = table1[table1['Name'].isin(selected_players_team1)]
-    selected_players_table2 = table2[table2['Name'].isin(selected_players_team2)]
+    # Check if both teams have 11 players selected
+    if len(selected_players_team1) != 11 or len(selected_players_team2) != 11:
+        st.error("Please select exactly 11 players for each team.")
+    else:
+        # Get the selected players
+        selected_players_table1 = table1[table1['Name'].isin(selected_players_team1)]
+        selected_players_table2 = table2[table2['Name'].isin(selected_players_team2)]
 
-    # Evaluate player performance
-    evaluate_player_performance(selected_players_table1)
-    evaluate_player_performance(selected_players_table2)
+        # Evaluate player performance
+        evaluate_player_performance(selected_players_table1)
+        evaluate_player_performance(selected_players_table2)
 
-    # Compare teams
-    result = compare_teams(selected_players_table1, selected_players_table2)
+        # Compare teams
+        result = compare_teams(selected_players_table1, selected_players_table2)
 
-    # Display selected players and result
-    st.write("Selected Players from Team Ind:")
-    st.dataframe(selected_players_table1)
+        # Display selected players and result
+        st.write("Selected Players from Team Ind:")
+        st.dataframe(selected_players_table1)
 
-    st.write("\nSelected Players from Team Aus:")
-    st.dataframe(selected_players_table2)
+        st.write("\nSelected Players from Team Aus:")
+        st.dataframe(selected_players_table2)
 
-    st.write("\nResult:", result)
+        st.write("\nResult:", result)
