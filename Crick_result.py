@@ -22,17 +22,17 @@ table2 = pd.read_csv('AusTim.csv')
 # Create Streamlit app
 st.title("Cricket Team Selector")
 
-# Team 1 dropdown
-team1_dropdown = st.selectbox("Select 11 players from Team Ind:", table1['Name'])
+# Team 1 multiselect
+selected_players_team1 = st.multiselect("Select 11 players from Team Ind:", table1['Name'], key='team1')
 
-# Team 2 dropdown
-team2_dropdown = st.selectbox("Select 11 players from Team Aus:", table2['Name'])
+# Team 2 multiselect
+selected_players_team2 = st.multiselect("Select 11 players from Team Aus:", table2['Name'], key='team2')
 
 # Button to evaluate teams
 if st.button("Evaluate Teams"):
     # Get the selected players
-    selected_players_table1 = table1[table1['Name'].isin([team1_dropdown])]
-    selected_players_table2 = table2[table2['Name'].isin([team2_dropdown])]
+    selected_players_table1 = table1[table1['Name'].isin(selected_players_team1)]
+    selected_players_table2 = table2[table2['Name'].isin(selected_players_team2)]
 
     # Evaluate player performance
     evaluate_player_performance(selected_players_table1)
@@ -41,5 +41,11 @@ if st.button("Evaluate Teams"):
     # Compare teams
     result = compare_teams(selected_players_table1, selected_players_table2)
 
-    # Display result
-    st.write("Result:", result)
+    # Display selected players and result
+    st.write("Selected Players from Team Ind:")
+    st.dataframe(selected_players_table1)
+
+    st.write("\nSelected Players from Team Aus:")
+    st.dataframe(selected_players_table2)
+
+    st.write("\nResult:", result)
