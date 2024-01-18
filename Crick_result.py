@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 
 def evaluate_player_performance(players):
-    players['Performance'] = players['TotRuns'] + players['Hunds'] * 100 + players['Fifties'] * 50
+    players['Performance'] = players['AvgRns'] + players['SR'] * 100
 
 def compare_teams(team1, team2):
     total_performance_team1 = team1['Performance'].sum()
@@ -55,4 +55,4 @@ if st.button("Match"):
 
         st.write("\nResult:", result)
 
-        st.warning("\nDisclaimer: The provided prediction is based on player's previous T20 stats.\n\nThere may be some alter values in the app's data according to sources.")
+        st.warning("\nDisclaimer: The provided prediction is based on player's previous T20 stats.\n\nIt only analyzes 'Average Runs' and 'Strike Rate' (As these are one of the crucial factors for player's performance)\n\nThere may be some alter values in the app's data according to sources.")
