@@ -20,7 +20,8 @@ table1 = pd.read_csv('IndTim.csv')
 table2 = pd.read_csv('AusTim.csv')
 
 # Create Streamlit app
-st.title("Cricket Team Selector")
+st.title("Cricket Team Result Predictor For Ind vs Aus")
+st.subheader("Now make your own team and see which team wins")
 
 # Team 1 multiselect
 selected_players_team1 = st.multiselect("Select 11 players from Team Ind:", table1['Name'], key='team1')
@@ -53,3 +54,5 @@ if st.button("Evaluate Teams"):
         st.dataframe(selected_players_table2)
 
         st.write("\nResult:", result)
+
+        st.warning("\nDisclaimer: The provided prediction is based on player's previous T20 stats\nThere may be some alter values in the app's data according to sources")
