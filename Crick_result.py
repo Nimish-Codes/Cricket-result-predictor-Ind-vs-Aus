@@ -53,6 +53,6 @@ if st.button("Evaluate Teams"):
         st.write("\nSelected Players from Team Aus:")
         st.dataframe(selected_players_table2)
 
-        st.result("\n#Result:", result)
+        st.result("\nResult:", result)
 
         st.warning("\nDisclaimer: The provided prediction is based on player's previous T20 stats.\n\nThere may be some alter values in the app's data according to sources.")
