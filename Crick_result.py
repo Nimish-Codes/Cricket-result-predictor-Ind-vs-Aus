@@ -30,7 +30,7 @@ selected_players_team1 = st.multiselect("Select 11 players from Team Ind:", tabl
 selected_players_team2 = st.multiselect("Select 11 players from Team Aus:", table2['Name'], key='team2')
 
 # Button to evaluate teams
-if st.button("Evaluate Teams"):
+if st.button("Match"):
     # Check if both teams have 11 players selected
     if len(selected_players_team1) != 11 or len(selected_players_team2) != 11:
         st.error("Please select exactly 11 players for each team.")
