@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 
 def evaluate_player_performance(players):
-    players['Performance'] = players['AvgRns'] + players['SR'] * 100
+    players['Performance'] = players['AvgRns'] + players['SR']
 
 def compare_teams(team1, team2):
     total_performance_team1 = team1['Performance'].sum()
